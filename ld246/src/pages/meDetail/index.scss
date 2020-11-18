@@ -1,0 +1,280 @@
+@import "./../style.scss";
+@import 'taro-ui/dist/style/components/button.scss'; // 按需引入
+@import 'taro-ui/dist/style/components/tabs.scss';
+@import 'taro-ui/dist/style/components/flex.scss';
+
+@include fontSize {
+  &.me-detail {
+    .title {
+      font-size: themed('big');
+    }
+
+    .card-info,
+    .score {
+      font-size: themed('small');
+    }
+
+    .card-content {
+      font-size: themed('normal');
+    }
+
+    .user-card-bottom-right {
+      font-size: themed('small');
+    }
+
+    .user-card-name {
+      font-size: themed('big');
+    }
+
+    .events-card-head {
+      font-size: themed('big');
+    }
+  }
+}
+
+@include themeify {
+  &.me-detail {
+    background: themed('bgColor');
+    height: 100%;
+
+
+    .tab {
+      width: auto;
+
+      &.blur {
+        filter: blur($blur);
+      }
+
+      .at-tabs__header {
+        position: absolute;
+        color: themed('titleColor');
+        background: themed('cardBgColor');
+        border-radius: themed('cardRadius');
+        text-align: start;
+        padding: 0 10px;
+        box-shadow: 0px 4px 12px 2px themed('shadowColor');
+        z-index: 1;
+        width: 96%;
+        left: 2%;
+        top: 20px;
+
+        .at-tabs__item {
+          padding: 15px 15px;
+          color: themed('titleColor');
+
+          &.at-tabs__item--active {
+            color: themed('titleColor');
+          }
+
+          .at-tabs__item-underline {
+            background: themed('brightColor');
+            width: auto;
+            position: initial;
+            height: 6px;
+            margin-top: 2px;
+          }
+        }
+      }
+
+      .at-tabs__underline {
+        display: none;
+      }
+
+      .at-tabs__body {
+        height: 100%;
+      }
+
+      .at-tabs-pane {
+        height: 100%;
+      }
+
+      .sub-tab-view {
+        height: 100%;
+      }
+
+      .card {
+
+        &:first-child {
+          margin-top: 116px;
+        }
+
+        border-radius: themed('cardRadius');
+        margin: 26px 2%;
+        padding: 16px;
+        background: themed('whiteColor');
+        box-shadow: 0px 4px 12px 2px themed('shadowColor');
+
+        &.tags {
+          background: transparent;
+          box-shadow: none;
+          margin-top: 0;
+          padding-top: 116px;
+          margin: 0 2%;
+        }
+
+        .card-head {
+
+          .title {
+            color: themed('titleColor');
+            white-space: pre-wrap;
+            text-align: start;
+          }
+
+          .score {
+            text-align: end;
+            color: transparent;
+
+            &.s50 {
+              color: #8fb2c9;
+            }
+
+            &.s60 {
+              color: #495c69;
+            }
+
+            &.s70 {
+              color: #83cbac;
+            }
+
+            &.s80 {
+              color: #5698c3;
+            }
+
+            &.s90 {
+              color: #983680;
+            }
+
+            &.s100 {
+              color: #ffa60f;
+            }
+          }
+        }
+
+        .card-content {
+          color: themed('grayFontColor');
+          margin-bottom: 8px;
+          text-align: start;
+        }
+
+        .card-foot {
+          .at-tag {
+            background: themed('bgColor');
+            box-shadow: initial;
+          }
+
+          .card-info {
+            color: themed('grayFontColor');
+
+            text {
+              margin: 0 10px;
+            }
+          }
+        }
+
+
+
+      }
+
+      .user-list {
+        width: 100%;
+        display: inline-block;
+      }
+
+      .card-user {
+        padding: 13px 0;
+        border-radius: themed('cardRadius');
+
+        &:first-child {
+          margin-top: 116px;
+        }
+
+        .user-card-body {
+          border-radius: themed('cardRadius');
+          height: 400px;
+          position: relative;
+          width: 96%;
+          left: 2%;
+          box-shadow: 0px 4px 12px 2px themed('shadowColor');
+
+          &.noBG {
+            height: 300px;
+          }
+
+          .user-card-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: themed('cardRadius');
+          }
+
+          .user-card-bottom {
+            position: absolute;
+            height: 50%;
+            width: 100%;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-radius: 0 0 20px 20px;
+            display: flex;
+            color: white;
+            flex-direction: row;
+
+            .user-card-bottom-left {
+              width: 37%;
+              text-align: end;
+
+              .user-card-avatar {
+                width: 200px;
+                height: 200px;
+                position: absolute;
+                border-radius: 100%;
+                bottom: 50%;
+                left: 6%;
+                background-color: white;
+              }
+            }
+
+            .user-card-bottom-right {
+              display: flex;
+              flex-direction: column;
+              text-align: start;
+              padding: 10px 0;
+              flex: 1;
+
+              .user-card-base {
+                display: flex;
+                flex-direction: column;
+                text-align: start;
+                flex: 1;
+
+                // .user-card-name {
+                //   font-size: 28px;
+                // }
+              }
+
+              .user-card-info {
+                display: flex;
+                flex-direction: row;
+
+                text {
+                  margin-right: 8px;
+                }
+              }
+            }
+
+
+            &.white {
+              color: themed('titleColor');
+              background-color: themed('whiteColor');
+              border-radius: themed('cardRadius');
+            }
+
+          }
+
+        }
+      }
+
+
+
+    }
+  }
+}

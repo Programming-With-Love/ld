@@ -1,0 +1,23 @@
+@import './../style.scss';
+@import "~taro-ui/dist/style/components/fab.scss";
+
+@include themeify {
+  &.comments-page {
+    height: 100%;
+    background: themed('bgColor');
+
+    .comment-page-view,
+    .comment-view {
+      height: 100%;
+    }
+
+    .rComment {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      z-index: 1;
+      background-color: themed('whiteColor');
+      color: themed('titleColor');
+    }
+  }
+}

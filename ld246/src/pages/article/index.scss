@@ -1,0 +1,91 @@
+@import './../style.scss';
+@import "~taro-ui/dist/style/components/fab.scss";
+
+@include fontSize {
+  &.article {
+    .head {
+
+      view:first-child {
+        font-size: themed('bigg')
+      }
+
+      view:last-child {
+        font-size: themed('small');
+      }
+
+      .author {
+        font-size: themed('normal');
+
+      }
+    }
+  }
+}
+
+@include themeify {
+  &.article {
+    height: 100%;
+    background: themed('bgColor');
+
+    .head {
+      background: themed('whiteColor');
+      padding: 0 2%;
+
+      view:first-child {
+        color: themed('titleColor');
+        font-weight: bold;
+      }
+
+      view:last-child {
+        color: themed('grayFontColor');
+
+        text {
+          margin: 0 10px 0 0;
+        }
+      }
+
+      .author {
+        color: themed('grayFontColor');
+
+        text {
+          margin: 0 10px 0 0;
+        }
+      }
+
+      padding-bottom: 20px;
+    }
+
+    .content,
+    .tags {
+      background: themed('whiteColor');
+      padding: 0 2%;
+      padding-bottom: 20px;
+      width: auto;
+    }
+
+    .comment-bottom {
+      overflow: hidden;
+      // display: inline-block;
+      width: 100%;
+
+      .comment-view {
+        overflow: hidden;
+      }
+
+      .comment-more {
+        text-align: center;
+        color: themed('grayFontColor');
+        background: themed('bgColor');
+        padding: 0 0 20px;
+      }
+    }
+
+    .rComment {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      z-index: 1;
+      background-color: themed('whiteColor');
+      color: themed('titleColor');
+    }
+  }
+}

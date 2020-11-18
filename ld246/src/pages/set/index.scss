@@ -1,0 +1,174 @@
+@import '../../pages/style.scss';
+@import "~taro-ui/dist/style/components/fab.scss";
+
+@include fontSize {
+  &.set-page {
+    .set-btn {
+      font-size: themed('normal');
+      .at-switch__title {
+        font-size: themed('normal');
+      }
+    }
+  }
+}
+
+@include themeify {
+  &.set-page {
+    background: themed('bgColor');
+    position: absolute;
+    width: 100%;
+
+    .set-exit {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      z-index: 1;
+      background-color: themed('whiteColor');
+      color: themed('titleColor');
+    }
+
+    .set-btn {
+
+      border-radius: themed('cardRadius');
+      padding: 0;
+      margin: 0;
+      margin: 26px 2%;
+      padding: 16px;
+      background: themed('whiteColor');
+      box-shadow: 0px 4px 12px 2px themed('shadowColor');
+      line-height: initial;
+      text-align: start;
+      color: themed('titleColor');
+
+      &::after {
+        border: initial;
+      }
+
+      &.about-me {
+        color: themed('grayFontColor');
+
+        view:first-child {
+          color: themed('titleColor');
+        }
+      }
+
+      .theme-func {
+        font-size: 28px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &.font-size {
+        display: flex;
+        justify-content: space-between;
+
+        >view {
+          display: flex;
+          justify-content: center;
+
+          >view {
+            padding: 0 20px;
+
+            &.active {
+              color: themed('brightColor');
+              border: 1px solid themed('brightColor');
+              border-radius: themed('cardRadius')/2;
+            }
+
+            &.small {
+              font-size: 24px;
+            }
+
+            &.normal {
+              font-size: 26px;
+            }
+
+            &.big {
+              font-size: 28px;
+            }
+          }
+        }
+      }
+      &.autoSign {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .autoSign-switch {
+          color: themed('titleColor');
+          border-radius: themed('cardRadius');
+          &.at-tag--active {
+            color: themed('brightColor');
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.set-page {
+  .themes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 8px 0;
+
+    @include get-theme {
+      &.theme-temp {
+        color: themed('blackColor');
+        width: 46%;
+        margin: 10px 1%;
+        background: themed('bgColor');
+        overflow: hidden;
+        border-radius: 10px;
+
+        &.active {
+          border: 1px solid themed('brightColor');
+        }
+
+        .tabs-temp {
+          background: themed('whiteColor');
+          color: themed('titleColor');
+          border-radius: themed('cardRadius')/2;
+          text-align: start;
+          margin: 10px;
+          padding: 2px 10px;
+          box-shadow: 0px 4px 12px 2px themed('shadowColor');
+          z-index: 1;
+
+          .tabs-temp-text {
+            position: relative;
+            display: inline-block;
+
+            &::after {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              height: 2px;
+              width: 100%;
+              border-bottom: 1px solid themed('brightColor');
+            }
+          }
+
+        }
+
+        .card-temp {
+          background: themed('whiteColor');
+          border-radius: themed('cardRadius')/2;
+          box-shadow: 0px 4px 12px 2px themed('shadowColor');
+          margin: 10px;
+          padding: 0 10px;
+
+          .card-temp-title {
+            color: themed('titleColor');
+          }
+
+          .card-temp-content {
+            color: themed('grayFontColor');
+          }
+        }
+      }
+    }
+  }
+}

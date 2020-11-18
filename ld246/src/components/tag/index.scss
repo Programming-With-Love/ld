@@ -1,0 +1,19 @@
+@import '../../pages/style.scss';
+@import 'taro-ui/dist/style/components/tag.scss';
+
+@include themeify {
+  .at-tag {
+    background: themed('bgColor');
+    margin: 0 2px;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid themed('lineColor');
+
+    image {
+      width: 26px;
+      height: 26px;
+      margin-right: 6px;
+      display: inline;
+    }
+  }
+}

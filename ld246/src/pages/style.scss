@@ -1,0 +1,153 @@
+@import './themes.scss';
+@import "~taro-ui/dist/style/components/message.scss";
+@import "~taro-ui/dist/style/components/flex.scss";
+// 主色系
+$bgColor: #FAFAFA;
+$brightColor: #F7B500;
+$black: #1b1b2f;
+$white: white;
+// 文本字体颜;
+$titleColor: #23374d;
+$subTitleColor: #e5e5e5;
+$grayFontColor: gray;
+// 图标颜;
+$iconColor: $brightColor;
+$blur: 10px;
+$cardRadius:20px;
+
+$lineColor: #F0F0F0;
+
+@mixin themeify {
+
+  @each $theme-name,
+  $map in $themes {
+
+    // !global 表示覆盖原来的
+    view[id='theme-#{$theme-name}'] {
+      $theme-map: () !global;
+
+      // 循环合并键值对
+      @each $key,
+      $value in $map {
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+
+      // 表示包含 下面函数 themed()
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@mixin fontSize {
+
+  @each $theme-name,
+  $map in $fontSizes {
+
+    // !global 表示覆盖原来的
+    .font-#{$theme-name} {
+      $theme-map: () !global;
+
+      // 循环合并键值对
+      @each $key,
+      $value in $map {
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+
+      // 表示包含 下面函数 themed()
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+
+
+@mixin get-theme {
+
+  @each $theme-name,
+  $map in $themes {
+
+    // !global 表示覆盖原来的
+    .theme-#{$theme-name} {
+      $theme-map: () !global;
+
+      // 循环合并键值对
+      @each $key,
+      $value in $map {
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+page {
+  // 全局设置小程序的样式
+  -webkit-overflow-scrolling: touch;
+}
+
+#app {
+  // 全局设置网页样式
+  height: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.index {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  @keyframes message {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.2);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .messageIcon {
+    display: none;
+    position: absolute;
+    left: 40px;
+    bottom: 40px;
+    z-index: 1;
+    background-color: $white;
+    color: $titleColor;
+
+    animation: 1s both infinite message;
+
+    &.show {
+      display: initial;
+    }
+
+    .icon {
+      line-height: 80px;
+    }
+
+  }
+
+  &.blur {
+    .messageIcon {
+      filter: blur($blur);
+    }
+  }
+}

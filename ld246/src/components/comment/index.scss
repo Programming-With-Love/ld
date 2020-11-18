@@ -1,0 +1,60 @@
+@import '../../pages/style.scss';
+
+@include fontSize {
+  .comment-view {
+    .comment-head {
+      font-size: themed('normal');
+    }
+  }
+}
+
+@include themeify {
+  .comment-view {
+    background: themed('bgColor');
+
+    .comment {
+      border-radius: themed('cardRadius');
+      margin: 26px 2%;
+      padding: 16px;
+      background: themed('whiteColor');
+      box-shadow: 0px 4px 12px 2px themed('shadowColor');
+      display: flex;
+      flex-direction: row;
+
+      image {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        border-radius: 100%;
+      }
+
+      .comment-head {
+        color: themed('titleColor');
+        text-align: start;
+      }
+
+      .comment-right {
+        flex: 1;
+      }
+
+      .comment-sub {
+        padding: 10px;
+        background: themed('bgColor');
+        display: flex;
+        flex-direction: row;
+        border-radius: themed('cardRadius');
+
+        image {
+          border-radius: 100%;
+          width: 40px;
+          height: 40px;
+          margin-right: 10px;
+        }
+
+        .comment-sub-right {
+          flex: 1;
+        }
+      }
+    }
+  }
+}

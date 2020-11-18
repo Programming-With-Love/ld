@@ -1,0 +1,39 @@
+@import "./../style.scss";
+
+@include themeify {
+  &.domain-page {
+    background: themed('bgColor');
+    position: absolute;
+
+    .sub-domain {
+      border-radius: themed('cardRadius');
+      margin: 26px 2%;
+      padding: 16px;
+      background: themed('whiteColor');
+      box-shadow: 0px 4px 12px 2px themed('shadowColor');
+
+      .domain-head {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        margin-bottom: 15px;
+
+        .domain-head-img {
+          text-align: center;
+          width: 25%;
+        }
+
+        .domain-head-text {
+          flex: 1;
+          color: themed('titleColor');
+
+          .domain-head-dec {
+            font-size: 24px;
+            color: themed('grayFontColor');
+          }
+        }
+      }
+    }
+  }
+}

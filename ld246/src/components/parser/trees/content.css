@@ -1,0 +1,159 @@
+.__h2,
+.__h3,
+.__h4 {
+  color: #23374d;
+}
+
+.__h2 {
+  margin: 20px 0;
+  font-size: 24px;
+}
+
+#font-small .__h2 {
+  font-size: 24px;
+}
+#font-normal .__h2 {
+  font-size: 26px;
+}
+#font-bi .__h2 {
+  font-size: 28px;
+}
+
+.__h3,
+.__h4 {
+  margin: 10px 0;
+  font-size: 23px;
+}
+
+#font-small .__h3,
+#font-small .__h4 {
+  font-size: 23px;
+}
+
+#font-normal .__h3,
+#font-normal .__h4 {
+  font-size: 25px;
+}
+
+#font-bi .__h3,
+#font-bi .__h4 {
+  font-size: 27px;
+}
+
+.__p,
+._p {
+  font-size: 23px;
+  color: #1E1E1E;
+  margin: 10px 0;
+}
+
+#font-small .__p,
+#font-small ._p {
+  font-size: 23px;
+}
+
+#font-normal .__p,
+#font-normal ._p {
+  font-size: 25px;
+}
+
+#font-bi .__p,
+#font-bi ._p {
+  font-size: 27px;
+}
+
+._a {
+  font-size: 20px;
+}
+
+#font-small ._a {
+  font-size: 20px;
+}
+
+#font-normal ._a {
+  font-size: 22px;
+}
+
+#font-bi ._a {
+  font-size: 24px;
+}
+
+.__ul,
+._ul {
+  font-size: 22px;
+}
+
+#font-small .__ul,
+#font-small ._ul {
+  font-size: 22px;
+}
+
+#font-normal .__ul,
+#font-normal ._ul {
+  font-size: 24px;
+}
+
+#font-bi .__ul,
+#font-bi ._ul {
+  font-size: 26px;
+}
+
+.__pre {
+  margin: 20px 0;
+  padding: .5em;
+  border-radius: 14px;
+  background-size: 2px 2px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8AgMAAABHkjHhAAAACVBMVEWAgIBaWlo+Pj7rTFvWAAAAA3RSTlMHCAw+VhR4AAAA+klEQVQoz4WSMW7EQAhFPxKWNh2FCx+HkaZI6RRb5DYbyVfIJXLKDCFoMbaTKSw/8ZnPAPjaH2xgZcUNUDADD7D9LtDBCLZ45fbkvo/30K8yeI64pPwl6znd/3n/Oe93P3ho9qeh72btTFzqkz0rsJle8Zr81OLEwZ1dv/713uWqvu2pl+k0fy7MWtj9r/tN5q/02z89qa/L4Dc2LvM93kezPfXlME/O86EbY/V9GB9ePX8G1/6W+/9h1dq/HGfTfzT3j/xNo7522Bfnqe5jO/fvhVthlfk434v3iO9zG/UOphyPeinPl1J8Gtaa7xPTa/Dk+RIs4deMvwGvcGsmsCvJ0AAAAABJRU5ErkJggg==);
+  background-color: #f6f8fa;
+}
+
+
+._code text {
+  display: inline-block;
+  padding: .5em;
+  overflow: auto;
+  width: auto;
+  border-radius: 14px;
+  white-space: nowrap;
+  background-color: #f6f8fa;
+}
+
+.emoji rich-text {
+  display: none;
+
+}
+
+.emoji ._image {
+  opacity: 1;
+  margin-top: initial;
+}
+
+#theme-tikTok ._code text,
+#theme-dark ._code text
+{
+  background-color: #343448;
+}
+
+#theme-tikTok .__pre
+#theme-dark .__pre
+{
+  background-color: #343448;
+}
+
+#theme-tikTok .__p,
+#theme-tikTok ._p,
+#theme-dark .__p,
+#theme-dark ._p
+{
+  color: white;
+}
+
+#theme-tikTok .__h2,
+#theme-tikTok .__h3,
+#theme-tikTok .__h4,
+#theme-dark .__h2,
+#theme-dark .__h3,
+#theme-dark .__h4
+{
+  color: white;
+}

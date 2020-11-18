@@ -1,0 +1,103 @@
+@import '../../pages/style.scss';
+@import "taro-ui/dist/style/components/flex.scss";
+@import "taro-ui/dist/style/components/float-layout.scss";
+@import "taro-ui/dist/style/components/icon.scss";
+@import "~taro-ui/dist/style/components/input.scss";
+@import "~taro-ui/dist/style/components/toast.scss";
+@import "~taro-ui/dist/style/components/textarea.scss";
+
+@include fontSize {
+  .login-view {
+    .login-inputs {
+      .at-input {
+
+        label,
+        input {
+          font-size: themed('big');
+        }
+      }
+    }
+  }
+}
+
+@include themeify {
+  .login-view {
+    .layout {
+      .layout-body {
+        margin: 20px;
+        padding: 30px 18px;
+      }
+    }
+
+    .login-body {
+      .login-head {
+        font-size: 36px;
+        margin: 0 0 0 10px;
+
+        .login-title {
+          color: themed('titleColor');
+        }
+
+        .close {
+          text-align: end;
+        }
+      }
+
+      .login-inputs {
+        margin: 32px 32px 0;
+
+        text {
+          width: 26px;
+          color: themed('grayFontColor');
+        }
+
+        .at-input {
+          background: themed('whiteColor');
+
+          label,
+          input {
+            color: themed('grayFontColor');
+          }
+
+        }
+
+        .login-code {
+          image {
+            width: 160px;
+            height: 80px;
+          }
+        }
+      }
+
+      .input-content {
+        margin: 20px 0;
+
+        .at-textarea {
+          border-color: themed('iconColor');
+        }
+      }
+
+      .login-buttons {
+        .login-hard {
+          height: 25px;
+          line-height: 25px;
+          padding: 10px 40px;
+          margin: 0 20px;
+          color: themed('subTitleColor');
+        }
+
+        .login {
+          height: 25px;
+          line-height: 25px;
+          padding: 10px 40px;
+          margin: 0 20px;
+          border: 1px solid themed('iconColor');
+          color: themed('iconColor');
+          border-radius: 25px;
+        }
+      }
+
+
+    }
+  }
+}

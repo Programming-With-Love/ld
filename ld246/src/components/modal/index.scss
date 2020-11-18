@@ -1,0 +1,25 @@
+@import '../../pages/style.scss';
+@import "taro-ui/dist/style/components/float-layout.scss";
+
+@include themeify {
+  .ld-modal {
+    .at-float-layout__container {
+      min-height: initial;
+      background: transparent;
+      .layout-body__content {
+        min-height: inherit;
+        max-height: inherit;
+      }
+      .layout-body
+       {
+        border-radius: themed('cardRadius');
+        min-height: inherit;
+        max-height: inherit;
+        background: themed('whiteColor');
+        margin: 20px;
+        padding: 0;
+      }
+
+    }
+  }
+}

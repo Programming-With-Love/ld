@@ -1,0 +1,60 @@
+@import '../../pages/style.scss';
+@import "taro-ui/dist/style/components/float-layout.scss";
+@import "~taro-ui/dist/style/components/textarea.scss";
+
+@include themeify {
+  .commentEdit {
+
+    .at-float-layout__container {
+      min-height: initial;
+    }
+
+    .layout {
+
+      background: transparent;
+
+      .layout-body__content {
+        min-height: inherit;
+        max-height: inherit;
+      }
+
+      .layout-body {
+        border-radius: themed('cardRadius');
+        min-height: inherit;
+        max-height: inherit;
+        background: themed('whiteColor');
+        margin: 20px;
+        padding: 30px 18px;
+      }
+    }
+
+    .commentEdit-body {
+      .input-content {
+        margin: 20px 0;
+
+        .at-textarea {
+          border-color: themed('iconColor');
+          background: themed('whiteColor');
+          color: themed('titleColor');
+          height: 300px;
+        }
+      }
+
+      .ok-buttons {
+        text-align: end;
+
+        text {
+          display: inline-block;
+          height: 25px;
+          line-height: 25px;
+          padding: 10px 40px;
+          margin: 0 20px;
+          border: 1px solid themed('iconColor');
+          color: themed('iconColor');
+          border-radius: 25px;
+        }
+      }
+    }
+
+  }
+}

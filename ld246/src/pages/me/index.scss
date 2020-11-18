@@ -1,0 +1,183 @@
+@import "./../style.scss";
+
+@include fontSize {
+  &.me-page {
+    .user-card-bottom-right {
+      font-size: themed('small');
+    }
+
+    .user-card-name {
+      font-size: themed('big');
+    }
+
+    .events-card-head {
+      font-size: themed('big');
+    }
+
+    .events-card-foot,
+    .events-card-content {
+      font-size: themed('normal');
+    }
+
+    .other-info-card {
+
+      >view {
+        font-size: themed('normal');
+      }
+    }
+  }
+}
+
+@include themeify {
+  &.me-page {
+    background: themed('bgColor');
+
+    .me-sign {
+      position: absolute;
+      left: 2%;
+      bottom: 10px;
+      border-radius: themed('cardRadius');
+      padding: 16px;
+      background: themed('whiteColor');
+      box-shadow: 0px 4px 12px 2px themed('shadowColor');
+      color: themed('titleColor');
+    }
+
+    .me-user-card {
+      padding-top: 26px;
+      width: 100%;
+
+      .user-card-body {
+        height: 400px;
+        position: relative;
+        margin: 0 2%;
+
+        &.noBGIMG {
+          margin-top: -100px;
+        }
+
+        .user-card-bg {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: themed('cardRadius');
+        }
+
+        .user-card-bottom {
+          position: absolute;
+          height: 50%;
+          width: 100%;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.12);
+          border-radius: 0 0 20px 20px;
+          display: flex;
+          flex-direction: row;
+          color: white;
+          box-shadow: 0px 4px 12px 2px themed('shadowColor');
+
+          .user-card-bottom-left {
+            width: 37%;
+            text-align: end;
+
+            .user-card-avatar {
+              width: 200px;
+              height: 200px;
+              position: absolute;
+              border-radius: 100%;
+              bottom: 50%;
+              left: 6%;
+              background-color: themed('whiteColor');
+            }
+          }
+
+          .user-card-bottom-right {
+            display: flex;
+            flex-direction: column;
+            text-align: start;
+            padding: 10px 0;
+            flex: 1;
+
+            .user-card-base {
+              display: flex;
+              flex-direction: column;
+              text-align: start;
+              flex: 1;
+
+              // .user-card-name {
+              //   font-size: 28px;
+              // }
+            }
+
+            .user-card-info {
+              display: flex;
+              flex-direction: row;
+
+              text {
+                margin-right: 8px;
+              }
+            }
+          }
+
+
+          &.white {
+            color: themed('titleColor');
+            background-color: themed('whiteColor');
+            border-radius: themed('cardRadius');
+          }
+
+        }
+
+      }
+    }
+
+    .other-info-card {
+      display: flex;
+      justify-content: space-around;
+      margin: 0 8%;
+      box-shadow: 0px 4px 12px 2px themed('shadowColor');
+      border-radius: 0 0 20px 20px;
+      background: themed('whiteColor');
+      padding: 10px 0;
+
+      >view {
+        background: themed('whiteColor');
+        color: themed('titleColor');
+        text-align: center;
+        flex: 1;
+      }
+    }
+
+    .events-list {
+      padding-bottom: 1px;
+
+      .events-card {
+        border-radius: themed('cardRadius');
+        margin: 26px 2%;
+        padding: 16px;
+        background: themed('whiteColor');
+        box-shadow: 0px 4px 12px 2px themed('shadowColor');
+
+        .events-card-head {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          color: themed('titleColor');
+          text-align: start;
+        }
+
+        .events-card-content {
+          color: themed('grayFontColor');
+          margin-bottom: 8px;
+          text-align: start;
+        }
+
+        .events-card-foot {
+          color: themed('titleColor');
+          text-align: start;
+        }
+      }
+    }
+
+
+  }
+}

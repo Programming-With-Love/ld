@@ -1,0 +1,61 @@
+@import '../../pages/style.scss';
+
+@include fontSize {
+  .ld-alert {
+    .alert-title {
+      font-size: themed('bigg');
+    }
+
+    .alert-text,
+    .alert-btns {
+      font-size: themed('big');
+    }
+  }
+}
+
+@include themeify {
+  .ld-alert {
+    .alert-content {
+      background: themed('white');
+      border-radius: themed('cardRadius');
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+
+      .alert-title {
+        text-align: start;
+        color: themed('titleColor');
+      }
+
+      .alert-text {
+        margin: 20px 0;
+        color: themed('titleColor');
+      }
+
+      .alert-btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        >view {
+          text-align: center;
+          padding: 10px 40px;
+          border: 1px solid themed('iconColor');
+          color: themed('iconColor');
+          border-radius: 25px;
+        }
+
+        .alert-cancel {
+          color: themed('subTitleColor');
+          border-color: themed('subTitleColor');
+          margin-right: 20px;
+        }
+
+        .alert-ok {
+          color: themed('brightColor');
+        }
+      }
+    }
+
+  }
+}

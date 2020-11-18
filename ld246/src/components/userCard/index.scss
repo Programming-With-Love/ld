@@ -1,0 +1,94 @@
+@import '../../pages/style.scss';
+
+@include fontSize {
+  .user-card {
+    .user-card-bottom-right {
+      font-size: themed('small');
+    }
+
+    .user-card-name {
+      font-size: themed('big');
+    }
+  }
+}
+
+@include themeify {
+  .user-card {
+    .layout-body {
+      background: transparent !important;
+    }
+
+    .user-card-body {
+      height: 400px;
+
+      .user-card-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: themed('cardRadius');
+      }
+
+      .user-card-bottom {
+        position: absolute;
+        height: 50%;
+        width: 100%;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.12);
+        border-radius: 0 0 20px 20px;
+        display: flex;
+        flex-direction: row;
+        color: white;
+
+
+        .user-card-bottom-left {
+          width: 37%;
+          text-align: end;
+
+          .user-card-avatar {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            border-radius: 100%;
+            bottom: 50%;
+            left: 6%;
+            background-color: themed('whiteColor');
+          }
+        }
+
+        .user-card-bottom-right {
+          display: flex;
+          flex-direction: column;
+          text-align: start;
+          padding: 10px 0;
+          flex: 1;
+
+          .user-card-base {
+            display: flex;
+            flex-direction: column;
+            text-align: start;
+            flex: 1;
+
+          }
+
+          .user-card-info {
+            display: flex;
+            flex-direction: row;
+
+            text {
+              margin-right: 8px;
+            }
+          }
+        }
+
+
+        &.white {
+          color: themed('titleColor');
+          background-color: themed('whiteColor');
+          border-radius: themed('cardRadius');
+        }
+
+      }
+
+    }
+  }
+}

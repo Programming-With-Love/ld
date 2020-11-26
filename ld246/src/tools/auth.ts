@@ -99,6 +99,9 @@ class Auth {
         return Net.req(url, {}, 'GET');
     }
 
+    login2 = (code: string): any => {
+        return Net.req(Net.Url.Auth.Login2, { twofactorAuthCode: code }, 'POST');
+    }
 
 
     // static updateLogin = (cookie: string): any => {

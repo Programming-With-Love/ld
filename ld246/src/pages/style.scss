@@ -23,7 +23,7 @@ $lineColor: #F0F0F0;
   $map in $themes {
 
     // !global 表示覆盖原来的
-    view[id='theme-#{$theme-name}'] {
+    #theme-#{$theme-name} {
       $theme-map: () !global;
 
       // 循环合并键值对
@@ -94,7 +94,7 @@ $lineColor: #F0F0F0;
   height: 0;
   color: transparent;
 }
-
+html,
 page {
   // 全局设置小程序的样式
   -webkit-overflow-scrolling: touch;
@@ -105,6 +105,17 @@ page {
   height: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+html,
+body,
+#app,
+#app>div, 
+#container,
+#container>div,
+.taro_page {
+  height: 100%;
+}
+
 
 .index {
   height: 100%;

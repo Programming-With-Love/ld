@@ -110,6 +110,11 @@ export default class Index extends Component<P, S> {
 
   componentDidMount() {
     this.refresh();
+    if (Taro.getEnv() === Taro.ENV_TYPE.WEAPP) {
+      Taro.onAppHide(() => {
+        this.getUnreadNoti();
+      });
+    }
   }
 
   refresh = ():void => {
@@ -260,7 +265,7 @@ export default class Index extends Component<P, S> {
             <View className='at-row at-row__justify--between card-head' onClick={() => this.handleClickCard(item)}>
               <View className='at-col title'>{item.title}</View>
               <View className={`at-col at-col-1 at-col--auto score s${item.score}`}>
-                <text className='icon icon-bookmark' />
+                <Text className='icon icon-bookmark' />
               </View>
             </View>
             <View className='card-content' onClick={() => this.handleClickCard(item)}>{item.content}</View>
@@ -273,11 +278,11 @@ export default class Index extends Component<P, S> {
               </View>
               <View className='at-row at-row__align--center at-row__justify--end card-info'>
                 <View onClick={() => this.setState({ isShowUserCard: true, userData: item.author })}>
-                  <text className='icon icon-user' />
+                  <Text className='icon icon-user' />
                   {item.author.name}
                 </View>
                 <View>
-                  <text className='icon icon-eye' />
+                  <Text className='icon icon-eye' />
                   {item.viewCount}
                 </View>
               </View>
@@ -347,7 +352,7 @@ export default class Index extends Component<P, S> {
           </View>
         ) : (
             <View className='no-login' onClick={() => {Net.reLogin.home()}}>
-              <text className='icon icon-user' />
+              <Text className='icon icon-user' />
               Login
             </View>
           )}

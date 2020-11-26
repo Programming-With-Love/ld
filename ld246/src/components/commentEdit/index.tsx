@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { AtFloatLayout, AtTextarea } from 'taro-ui';
 import './index.scss';
 

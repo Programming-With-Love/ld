@@ -27,6 +27,23 @@ $themes: (light: ( // 主色系
     cardRadius: 20px,
     lineColor: #f0f0f0,
     shadowColor: rgba(156, 156, 156, 0.12)),
+  straightMan: ( // 主色系
+    bgColor: white,
+    cardBgColor: white,
+    // brightColor: #F7B500,
+    brightColor: #1890ff,
+    blackColor: #1b1b2f,
+    whiteColor: white,
+    // 文本字体颜色
+    titleColor: #23374d,
+    subTitleColor: #e5e5e5,
+    grayFontColor: gray,
+    // 图标颜色
+    iconColor: #1890ff,
+    blur: 10px,
+    cardRadius: 1px,
+    lineColor: #f0f0f0,
+    shadowColor: rgba(156, 156, 156, 0.12)),
   dark: ( // 主色系
     bgColor: #0e0e0e,
     cardBgColor: #191d27,

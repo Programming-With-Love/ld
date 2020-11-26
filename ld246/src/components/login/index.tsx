@@ -20,13 +20,14 @@ type PropsWithDefaults = props & defaultProps;
 
 interface S {
     isClose: boolean,
-    isShowCode: boolean,
+    login2Code: string,
     captcha: string,
     name: string,
     password: string,
     code: string,
     loginType: number,
-    xxxStr: string
+    xxxStr: string,
+    isNeedLogin2: boolean
 }
 class Tag extends Component<PropsWithDefaults, S> {
     public static defaultProps: defaultProps = {
@@ -43,11 +44,12 @@ class Tag extends Component<PropsWithDefaults, S> {
             xxxStr: '',
             loginType: 0,
             isClose: false,
-            isShowCode: false,
+            login2Code: '',
             captcha: '',
             name: '',
             password: '',
             code: '',
+            isNeedLogin2: false
         };
         this.captcha = '';
     }
@@ -71,8 +73,14 @@ class Tag extends Component<PropsWithDefaults, S> {
         this.setState({ xxxStr: e });
     }
 
+    handleLogin2Change = (e): void => {
+        // Log.Info(e);
+        this.setState({ login2Code: e });
+    }
+
+
     login = (): void => {
-        const { name, code, password, captcha, loginType, xxxStr } = this.state;
+        const { name, code, password, captcha, loginType, xxxStr, isNeedLogin2, login2Code } = this.state;
         const { onClose } = this.props as PropsWithDefaults;
 
         const getUserInfo = () => {
@@ -92,20 +100,26 @@ class Tag extends Component<PropsWithDefaults, S> {
             if (Common.trim(name || '').length === 0) { this.toast('请输入用户名/邮箱/手机号'); return; }
             if (Common.trim(password || '').length === 0) { this.toast('请输入密码'); return; }
             if (Common.trim(code || '').length === 0 && captcha.length != 0) { this.toast('请输入验证码'); return; }
-            Auth.login(name, password, code).then((resp) => {
+            if (Common.trim(login2Code || '').length === 0 && isNeedLogin2) { this.toast('请输入两部验证码'); return; }
+            const loginHandle = (resp) => {
                 if (resp.code === 0) {
                     Auth.setCookie(`symphony=${resp.token}`);
                     getUserInfo();
-                    // Taro.showToast({ title: 'Login', icon: 'success' });
-                    // this.setState({ isClose: true });
-                    // if (onClose) onClose(true);
+                } else if (resp.code === 10) {
+                    Auth.setCookie(`symphony=${resp.token}`);
+                    this.setState({ isNeedLogin2: true, captcha: '' });
                 } else if (resp.needCaptcha) {
                     if (this.captcha !== resp.needCaptcha && resp.needCaptcha?.length != 0) {
                         this.captcha = resp.needCaptcha;
                         this.setState({ captcha: this.captcha });
                     }
                 }
-            });
+            }
+            if (isNeedLogin2) {
+                Auth.login2(login2Code).then(loginHandle);
+            } else {
+                Auth.login(name, password, code).then(loginHandle);
+            }
         } else {
             if (xxxStr.length === 0) { this.toast('不能为空！'); return; }
             Auth.setCookie(xxxStr);
@@ -118,7 +132,7 @@ class Tag extends Component<PropsWithDefaults, S> {
     }
 
     render() {
-        const { isClose, captcha, name, code, password, loginType, xxxStr, isShowCode } = this.state;
+        const { isClose, captcha, name, code, password, loginType, xxxStr, isNeedLogin2, login2Code } = this.state;
         const { isShow, theme, onClose, className } = this.props as PropsWithDefaults;
         const codeUrl = `${Net.Url.Auth.Captcha}?needCaptcha=${captcha}`
         return (
@@ -133,7 +147,7 @@ class Tag extends Component<PropsWithDefaults, S> {
                     {loginType === 0 ? (
                         <View className='login-inputs'>
                             <View className='at-row at-row__align--center at-row__justify--between login-name'>
-                                <text className='icon icon-user' />
+                                <Text className='icon icon-user' />
                                 <View className='at-col'>
                                     <AtInput
                                         // clear
@@ -148,7 +162,7 @@ class Tag extends Component<PropsWithDefaults, S> {
                                 </View>
                             </View>
                             <View className='at-row at-row__align--center at-row__justify--between login-password'>
-                                <text className='icon icon-key' />
+                                <Text className='icon icon-key' />
                                 <View className='at-col'>
                                     <AtInput
                                       border={false}
@@ -163,7 +177,7 @@ class Tag extends Component<PropsWithDefaults, S> {
                             </View>
                             {captcha.length > 0 ? (
                                 <View className='at-row at-row__align--center at-row__justify--between login-code'>
-                                    <text className='icon icon-user-secret' />
+                                    <Text className='icon icon-yelp' />
                                     <View className='at-col'>
                                         <AtInput
                                           border={false}
@@ -177,7 +191,22 @@ class Tag extends Component<PropsWithDefaults, S> {
                                     </View>
                                     <Image src={codeUrl} onClick={() => this.setState({ captcha: `${this.captcha}&t=${new Date().getTime()}` })} />
                                 </View>
-                            ) : ''}
+                            ) : null}
+                            {isNeedLogin2 ? (
+                                <View className='at-row at-row__align--center at-row__justify--between login-login2'>
+                                    <Text className='icon icon-yelp' />
+                                    <View className='at-col'>
+                                        <AtInput
+                                          border={false}
+                                          name={`login2-${className}`}
+                                          type='text'
+                                          placeholder='请输入两步验证码'
+                                          value={login2Code}
+                                          onChange={this.handleLogin2Change}
+                                        />
+                                    </View>
+                                </View>
+                            ) : null}
                         </View>
                     ) : (
                             <View className='input-content'>
@@ -191,10 +220,10 @@ class Tag extends Component<PropsWithDefaults, S> {
                             </View>
                         )}
                     <View className='at-row at-row__align--center at-row__justify--end login-buttons'>
-                        <text className='login-hard' onClick={() => this.setState({ loginType: loginType === 0 ? 1 : 0 })}>
+                        <Text className='login-hard' onClick={() => this.setState({ loginType: loginType === 0 ? 1 : 0 })}>
                             {loginType === 0 ? '登录不上去？' : '账号密码登录'}
-                        </text>
-                        <text className='icon icon-enter login' onClick={this.login} />
+                        </Text>
+                        <Text className='icon icon-enter login' onClick={this.login} />
                     </View>
                 </View>
             </ModalView>

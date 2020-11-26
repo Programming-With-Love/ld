@@ -210,6 +210,4 @@ exports.main = async (event, context) => {
 
   const reqs_ = reqs.map((r) => req_(r));
   return Promise.all(reqs_);
-  
-  
 }

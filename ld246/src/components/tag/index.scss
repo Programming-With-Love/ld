@@ -8,6 +8,8 @@
     display: inline-flex;
     align-items: center;
     border: 1px solid themed('lineColor');
+    word-break: keep-all;
+    border-radius: themed('cardRadius');
 
     image {
       width: 26px;

@@ -1,10 +1,9 @@
 @import '../../pages/style.scss';
-@import "taro-ui/dist/style/components/flex.scss";
 @import "taro-ui/dist/style/components/float-layout.scss";
 @import "taro-ui/dist/style/components/icon.scss";
-@import "~taro-ui/dist/style/components/input.scss";
-@import "~taro-ui/dist/style/components/toast.scss";
-@import "~taro-ui/dist/style/components/textarea.scss";
+@import "taro-ui/dist/style/components/input.scss";
+@import "taro-ui/dist/style/components/toast.scss";
+@import "taro-ui/dist/style/components/textarea.scss";
 
 @include fontSize {
   .login-view {
@@ -46,7 +45,8 @@
       .login-inputs {
         margin: 32px 32px 0;
 
-        text {
+        text,
+taro-text-core {
           width: 26px;
           color: themed('grayFontColor');
         }
@@ -93,7 +93,7 @@
           margin: 0 20px;
           border: 1px solid themed('iconColor');
           color: themed('iconColor');
-          border-radius: 25px;
+          border-radius: themed('cardRadius');
         }
       }
 

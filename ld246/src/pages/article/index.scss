@@ -38,7 +38,8 @@
       view:last-child {
         color: themed('grayFontColor');
 
-        text {
+        text,
+taro-text-core {
           margin: 0 10px 0 0;
         }
       }
@@ -46,7 +47,8 @@
       .author {
         color: themed('grayFontColor');
 
-        text {
+        text,
+taro-text-core {
           margin: 0 10px 0 0;
         }
       }

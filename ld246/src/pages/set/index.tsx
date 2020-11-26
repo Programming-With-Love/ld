@@ -5,16 +5,20 @@ import { View, Button } from "@tarojs/components";
 import { Auth, Config, Theme } from "../../tools";
 import Alert from "../../components/alert";
 import FView from "../index";
+import TailEdit from '../../components/commentEdit';
 import "./index.scss";
 
 interface P { }
 interface S {
-    isShowExitAlert: boolean;
-    themeMode: string;
-    themeName: string;
-    fontSizeMode: string;
-    isAutoSign: boolean;
+    isShowExitAlert: boolean,
+    themeMode: string,
+    themeName: string,
+    fontSizeMode: string,
+    isAutoSign: boolean,
+    tail: string,
+    isTailEdit: boolean,
 }
+
 class Index extends Component<P, S> {
     ver: string;
     themes: string[];
@@ -25,7 +29,9 @@ class Index extends Component<P, S> {
             fontSizeMode: Config.userConfig.fontSizeMode,
             isShowExitAlert: false,
             themeName: Theme.getNowThemeName(),
-            isAutoSign: Config.userConfig.isAutoSign === 1
+            isAutoSign: Config.userConfig.isAutoSign === 1,
+            tail: Config.userConfig.tail,
+            isTailEdit: false
         };
         const accountInfo = Taro.getAccountInfoSync();
         this.ver = `${accountInfo.miniProgram.envVersion} ${accountInfo.miniProgram.version}`;
@@ -71,6 +77,16 @@ class Index extends Component<P, S> {
                 this.setState({ isAutoSign: !isAutoSign });
                 Config.userConfig.isAutoSign = isAutoSign ? 0 : 1;
                 Config.updateConfig();
+            }
+                break
+            case "tailMode": {
+                if (obj.length) {
+                    this.setState({ isTailEdit: false, tail: obj });
+                    Config.userConfig.tail = obj;
+                    Config.updateConfig();
+                } else {
+                    this.setState({ isTailEdit: false, tail: Config.userConfig.tail });
+                }
             }
                 break
             default:
@@ -127,8 +143,12 @@ class Index extends Component<P, S> {
         );
     };
 
+    handleTailChange = (text: string): void => {
+        this.setState({ tail: text });
+    }
+
     render() {
-        const { isShowExitAlert, themeMode, fontSizeMode, isAutoSign } = this.state;
+        const { isShowExitAlert, themeMode, fontSizeMode, isAutoSign, tail, isTailEdit } = this.state;
         return (
             <FView className='set-page' onCloseLogin={this.refresh}>
                 <Alert
@@ -177,10 +197,25 @@ class Index extends Component<P, S> {
                     >
                         {isAutoSign ? 'ON': 'OFF'}</AtTag>
                 </View>
+                <View className='set-btn tail'>
+                    <View>尾巴定制</View>
+                    <View onClick={() => this.setState({isTailEdit: true})}>
+                        {tail}
+                    </View>
+                </View>
                 <Button className='set-btn' openType='feedback'>
                     反馈
         </Button>
-                <View className='set-btn'>版本：{this.ver}</View>
+                <View className='set-btn'>
+                    版本：{this.ver} 本次更新内容：
+                    <View>
+                        <View>支持两部验证登录</View>
+                        <View>增加尾巴定制</View>
+                        <View>优化消息通知获取业务逻辑</View>
+                        <View>修复标签显示问题</View>
+                        <View>增加新主题一套</View>
+                    </View>
+                </View>
                 <View className='set-btn about-me'>
                     <View>About</View>
           一个不想做H5的iOS工程师不是一个好的UI设计师。
@@ -190,6 +225,14 @@ class Index extends Component<P, S> {
                         能希望对你有所帮助！
           </View>
                 </View>
+                <TailEdit
+                  isOpened={isTailEdit}
+                  value={tail}
+                  onChange={this.handleTailChange}
+                  onClose={() => this.setState({ isTailEdit: false, tail: Config.userConfig.tail })}
+                  placeholder='请输入定制尾巴内容'
+                  onOK={() => this.handleClickFunc("tailMode", tail)}
+                />
             </FView>
         );
     }

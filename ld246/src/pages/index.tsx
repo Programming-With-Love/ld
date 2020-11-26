@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Taro from '@tarojs/taro';
 import { AtMessage, AtFab } from 'taro-ui';
+import { View, Text } from '@tarojs/components'
 import LoginView from '../components/login';
 import { Auth, Log, Config, Theme } from '../tools'
 import Net from '../net'
@@ -19,12 +20,14 @@ const FView = (props) => {
             frontColor: navTheme.frontColor,
             backgroundColor: navTheme.backgroundColor,
         })
-        Taro.onThemeChange((res) => {
-            if (Config.userConfig.themeMode === 'auto') {
-                setTheme(res.theme);
-                Theme.setTheme(res.theme);
-            }
-        });
+        if (Taro.getEnv() === Taro.ENV_TYPE.WEAPP) {
+            Taro.onThemeChange((res) => {
+                if (Config.userConfig.themeMode === 'auto') {
+                    setTheme(res.theme);
+                    Theme.setTheme(res.theme);
+                }
+            });
+        }
 
         if (props.className && props.className.length) {
             Net.reLogin[props.className] = () => {
@@ -57,7 +60,7 @@ const FView = (props) => {
         Taro.showToast({ title: `禁止套娃！当前为第${nowPageNum}页`, icon: 'none' });
     }
     const fontSizeTemp = fontSize === 'big' ? 'bi' : fontSize;
-    return <view className={`index ${props.className} font-${fontSizeTemp}`} id={`theme-${themeName}`} >
+    return <View className={`index ${props.className} font-${fontSizeTemp}`} id={`theme-${themeName}`} >
         <AtMessage />
         {isShowLogin ? (
             <LoginView key={`login-${props.className}`} className={`login-${props.className}`} theme={props.theme} isShow={isShowLogin} onClose={(e) => {
@@ -77,14 +80,14 @@ const FView = (props) => {
             />
         ) : null}
         <AtFab className={`messageIcon ${props.unread?.count > 0 ? 'show' : ''}`} size='small' onClick={() => Taro.navigateTo({ url: `/pages/notifications/index?type=${props.unread.type}` })}>
-            <text className='icon icon-bell' />
+            <Text className='icon icon-bell' />
         </AtFab>
         {
             React.Children.map(props.children, (child) => {
                 return child;
             })
         }
-    </view>
+    </View>
 }
 
 export default FView;

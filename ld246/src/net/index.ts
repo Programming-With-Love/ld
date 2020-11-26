@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro';
 import { Log, Auth, Common, Storage, Config } from '../tools';
 import C from './config';
+// import localNet from './localNet';
 
 let instance: Net;
 interface result {
@@ -31,9 +32,12 @@ class Net {
     reLogin: { [key: string]: () => void; };
     closeLogin: { [key: string]: () => void; };
     constructor() {
-        Taro.cloud.init({
-            env: 'ld-6gqlql2i1d286f17'
-        });
+        if (Taro.getEnv() === Taro.ENV_TYPE.WEAPP) {
+            Taro.cloud.init({
+                env: 'ld-6gqlql2i1d286f17'
+            });
+        }
+        
         this.NowReqDic = {};
         this.reLogin = {};
         this.closeLogin = {};
@@ -52,6 +56,20 @@ class Net {
             s += item.url;
         });
         return Common.encodeMd5(s);
+    }
+
+    callCloudFunction = (param: Pick<Taro.cloud.CallFunctionParam, "name" | "data" | "slow" | "config">) => {
+        // if (Taro.getEnv() === Taro.ENV_TYPE.WEAPP) {
+        //     return Taro.cloud.callFunction(param);
+        // }
+        return Taro.cloud.callFunction(param);
+        // return new Promise(async (res) => {
+        //     const resp = await localNet(param.data, '');
+        //     res({
+        //         status: 1,
+        //         result: resp
+        //     })
+        // });
     }
 
     reqs = (reqs: ReqM[], config: NetConfigM = { showError: false, showLoading: true },): any => {
@@ -114,7 +132,7 @@ class Net {
         });
         return new Promise((resolve, reject) => {
             Log.Web(urls, 0);
-            Taro.cloud.callFunction({
+            this.callCloudFunction({
                 // 云函数名称
                 name: 'gkRequest',
                 data: {
@@ -193,7 +211,7 @@ class Net {
                 // cookie = `symphony=${cookie}`
                 headers["cookie"] = cookie;
             }
-            Taro.cloud.callFunction({
+            this.callCloudFunction({
                 // 云函数名称
                 name: 'gkRequest',
                 data: {
@@ -367,7 +385,7 @@ class Net {
     }
 
     sendComment = (content, articleId, rID = '') => {
-        const temp = `<p>${content}<br/><a href="https://github.com/goldhan/ld" style="text-align: end;">来自链滴小程序（非官方）</a></p>`
+        const temp = `<p>${content}<br/><a href="https://github.com/goldhan/ld" style="text-align: end;">${Config.userConfig.tail}</a></p>`
         return this.req(this.Url.Comment.SendComment, {
             articleId: articleId,
             commentContent: temp,

@@ -1,4 +1,5 @@
 import Taro from '@tarojs/taro';
+import { Log } from '.';
 import UserConifg from './config';
 
 interface NavThemeM {
@@ -25,7 +26,8 @@ class Theme {
     }
 
     getNavThemeJson = (name:string): NavThemeM => {
-        return {
+        Log.Highlight(name);
+        const temp = {
             'light': {
                 backgroundColor: '#FFFFFF',
                 frontColor: '#000000',
@@ -46,11 +48,16 @@ class Theme {
                 backgroundColor: '#171c1f',
                 frontColor: '#ffffff',
             },
-        }[name];
+            'straightMan': {
+                backgroundColor: '#FFFFFF',
+                frontColor: '#000000',
+            },
+        };
+        return temp[name];
     };
 
     getThemes = (): string[] => {
-        return ['light', 'dark', 'tikTok', 'realMan', 'gayhub'];
+        return ['light', 'dark', 'tikTok', 'realMan', 'gayhub', 'straightMan'];
     }
 
     getSystemTheme = ():string => {

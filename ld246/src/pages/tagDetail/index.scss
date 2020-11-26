@@ -167,7 +167,8 @@
         .card-info {
           color: themed('grayFontColor');
 
-          text {
+          text,
+taro-text-core {
             margin: 0 10px;
           }
         }
@@ -257,7 +258,8 @@
               display: flex;
               flex-direction: row;
 
-              text {
+              text,
+taro-text-core {
                 margin-right: 8px;
               }
             }

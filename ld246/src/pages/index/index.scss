@@ -153,7 +153,8 @@
             .card-info {
               color: themed('grayFontColor');
 
-              text {
+              text,
+              taro-text-core {
                 margin: 0 10px;
               }
             }
@@ -171,7 +172,8 @@
       text-align: center;
       color: themed('grayFontColor');
 
-      >text {
+      >text,
+      >taro-text-core {
         color: themed('brightColor');
         font-size: 72px;
         margin-bottom: 30px;

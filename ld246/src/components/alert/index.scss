@@ -42,7 +42,7 @@
           padding: 10px 40px;
           border: 1px solid themed('iconColor');
           color: themed('iconColor');
-          border-radius: 25px;
+          border-radius: themed('cardRadius');
         }
 
         .alert-cancel {

@@ -1,6 +1,6 @@
 @import '../../pages/style.scss';
 @import "taro-ui/dist/style/components/float-layout.scss";
-@import "~taro-ui/dist/style/components/textarea.scss";
+@import "taro-ui/dist/style/components/textarea.scss";
 
 @include themeify {
   .commentEdit {
@@ -30,20 +30,22 @@
 
     .commentEdit-body {
       .input-content {
-        margin: 20px 0;
+        margin-bottom: 20px;
 
         .at-textarea {
           border-color: themed('iconColor');
           background: themed('whiteColor');
           color: themed('titleColor');
           height: 300px;
+          border-radius: themed('cardRadius');
         }
       }
 
       .ok-buttons {
         text-align: end;
 
-        text {
+        text,
+        taro-text-core {
           display: inline-block;
           height: 25px;
           line-height: 25px;
@@ -51,7 +53,7 @@
           margin: 0 20px;
           border: 1px solid themed('iconColor');
           color: themed('iconColor');
-          border-radius: 25px;
+          border-radius: themed('cardRadius');
         }
       }
     }

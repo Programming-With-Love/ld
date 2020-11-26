@@ -38,7 +38,7 @@ class Tag extends Component<PropsWithDefaults> {
         const { text, img } = this.props as PropsWithDefaults;
         return (
             <AtTag circle size='small' onClick={() => this.onClick()} >
-                {img?.length != 0 ? <Image src={img || ''} /> : '' }
+                {img?.length != 0 ? <Image src={img || ''} /> : null }
                 {text}
             </AtTag>
         )

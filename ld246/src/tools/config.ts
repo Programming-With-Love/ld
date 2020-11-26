@@ -1,4 +1,5 @@
 import Taro from '@tarojs/taro';
+import { Log } from '.';
 import Common from './common';
 import Storage from './stor';
 
@@ -8,7 +9,8 @@ interface userConfig {
     ver: number,
     fontSizeMode: string,
     isAutoSign: number,
-    signDate: string
+    signDate: string,
+    tail: string
 }
 
 interface StorageDataKey {
@@ -57,9 +59,10 @@ class UserConifg {
             theme: 'light',
             themeMode: 'auto',
             fontSizeMode: 'normal',
-            ver: 1.2,
+            ver: 1.3,
             isAutoSign: 1,
             signDate: '',
+            tail:'来自链滴小程序（非官方）'
         }
         const userConfig = Storage.getData(this.StorageDataKey.Config);
         if (userConfig && userConfig.ver >= this.userConfig.ver) {
@@ -69,7 +72,7 @@ class UserConifg {
         }
         if (this.userConfig.themeMode === 'auto') {
             const obj = Taro.getSystemInfoSync() as any;
-            if (obj.theme != this.userConfig.theme) {
+            if (obj.theme && obj.theme != this.userConfig.theme) {
                 this.userConfig.theme = obj.theme;
                 Storage.setData(this.StorageDataKey.Config, this.userConfig);
             }
